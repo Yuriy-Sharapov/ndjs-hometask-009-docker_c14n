@@ -27,6 +27,14 @@ docker pull 14101916/books_counter:v1.0.0
 - [X] 1. Создано приложение Node.js, обрабатывающее два роута:
     - [X] 1.1 увеличить счётчик POST /counter/:bookId/incr;
     - [X] 1.2 получить значение счётчика GET /counter/:bookId — приложение контейнеризировано.
+
+:white_check_mark: Приложение Redis-счетчик выделено в отдельный образ и залито в репозиторий:
+https://hub.docker.com/repository/docker/14101916/redis_counter/general
+
+```Batchfile
+docker pull 14101916/redis_counter:v1.0.0
+```
+
 - [ ] 2. В основном приложении при просмотре книги:
     - [ ] 2.1 увеличение счётчика,
     - [ ] 2.2 отображение значения счётчика;
