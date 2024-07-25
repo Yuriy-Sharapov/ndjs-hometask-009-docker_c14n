@@ -2,6 +2,8 @@ const express = require('express')
 const router = express.Router()
 module.exports = router
 
+const axios = require('axios')
+
 const fs = require('fs');
 const path = require('path');
 
@@ -40,7 +42,7 @@ router.post('/books/create', (req, res) => {
 })
 
 // 3. получить книгу по ID
-router.get('/books/:id', (req, res) => {
+router.get('/books/:id', async(req, res) => {
 
     // получаем объект книги, если запись не найдена, вернём Code: 404
     const {books} = stor
@@ -49,10 +51,29 @@ router.get('/books/:id', (req, res) => {
 
     if (idx === -1)
         res.redirect('/404')
-        
+    
+    const COUNTER_URL = process.env.COUNTER_URL || "http://localhost:3003"
+    //const COUNTER_URL = "http://localhost:3003"
+    console.log(COUNTER_URL)
+    const access_url = `${COUNTER_URL}/counter/${books[idx].title}`
+    console.log(access_url)
+
+    const cnt = 0
+    try {
+        await axios.post(`${access_url}/incr`);
+        const axios_res = await axios.get(access_url);
+        console.log(axios_res)
+        cnt = axios_res.cnt
+        console.log(cnt)
+    } catch (e) { 
+        console.log('Ошибка при работе с axios')
+        console.log(e)
+    }
+
     res.render("books/view", {
         title: "Просмотреть карточку книги",
-        book: books[idx]
+        book: books[idx],
+        cnt: cnt
     })
 })
 
