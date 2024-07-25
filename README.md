@@ -42,7 +42,7 @@ docker pull 14101916/redis_counter:v1.0.0
 
 В исходном коде приложения должен появиться docker-compose.yml.
 
-:white_check_mark: Приложение Библиотека со счетником обращений к ним и залито в репозиторий:
+:white_check_mark: Приложение Библиотека со счетником обращений к книгам залито в репозиторий:
 https://hub.docker.com/layers/14101916/books_counter/v2.0.0/images/sha256-24cfd863dac3d4cb58e2ce3c5da48cf223552bdc4b884789078b62821368e375?context=explore
 
 ```Batchfile
