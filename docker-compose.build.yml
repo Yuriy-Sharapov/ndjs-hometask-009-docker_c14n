@@ -16,7 +16,7 @@ services:
     build: ./service_books/
     environment:
       - PORT=3002
-      - COUNTER_URL=http://localhost:3003
+      - COUNTER_URL=http://counter:3003
     ports:
       - 80:3002
     depends_on:

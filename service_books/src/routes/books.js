@@ -53,18 +53,13 @@ router.get('/books/:id', async(req, res) => {
         res.redirect('/404')
     
     const COUNTER_URL = process.env.COUNTER_URL || "http://localhost:3003"
-    //const COUNTER_URL = "http://localhost:3003"
-    console.log(COUNTER_URL)
     const access_url = `${COUNTER_URL}/counter/${books[idx].title}`
-    console.log(access_url)
 
-    const cnt = 0
+    let cnt = 0
     try {
         await axios.post(`${access_url}/incr`);
         const axios_res = await axios.get(access_url);
-        console.log(axios_res)
-        cnt = axios_res.cnt
-        console.log(cnt)
+        cnt = axios_res.data.cnt
     } catch (e) { 
         console.log('Ошибка при работе с axios')
         console.log(e)
